@@ -2,7 +2,6 @@
 
 use App\Mail\WelcomeMail;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\EmailController::class,'list']);
 
-//Route::get('/', function () {
-//
-//
-//    return view('welcome');
-//});
-
 
 // generate sanctum token based on user id
 Route::get('/token/{user}/{name}', function ($user, $name) {
@@ -36,9 +29,8 @@ Route::get('/token/{user}/{name}', function ($user, $name) {
 });
 
 
-// generate sanctum token based on user id
+// test email
 Route::get('/test-email/{user}', function (User $user) {
-
     Mail::to('testreceiver@gmail.com')
         ->send(new WelcomeMail($user , 'ucha19871@gmail.com','testing','testing body'));
 });
