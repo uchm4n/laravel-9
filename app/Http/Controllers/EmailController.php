@@ -32,12 +32,11 @@ class EmailController extends Controller
             /** @var RedisHelperInterface $redisHelper */
             $redisHelper = app()->make(RedisHelperInterface::class);
             $redisHelper->storeRecentMessage($user->id, $subject, $fromEmail);
-
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 500);
         }
 
-        return response()->json(['message' => 'email sent successfully !', 'status' => 'success']);
+        return response()->json(['status' => 'success', 'message' => 'email sent successfully !']);
     }
 
     public function list(ElasticsearchHelperInterface $elasticHelper)
