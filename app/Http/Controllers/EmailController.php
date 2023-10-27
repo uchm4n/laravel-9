@@ -32,7 +32,8 @@ class EmailController extends Controller
             /** @var RedisHelperInterface $redisHelper */
             $redisHelper = app()->make(RedisHelperInterface::class);
             $redisHelper->storeRecentMessage($user->id, $subject, $fromEmail);
-        } catch (EmailNotSend $e) {
+
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
