@@ -3,6 +3,13 @@
 namespace App\Utilities\Contracts;
 
 interface ElasticsearchHelperInterface {
+
+    /**
+     * get all email data
+     * @return mixed
+     */
+    public function listAllEmails(): mixed;
+
     /**
      * Store the email's message body, subject and to address inside elasticsearch.
      *
